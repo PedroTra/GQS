@@ -1,0 +1,150 @@
+public class Veiculo {
+    private String chassi;
+    private String placa;
+    private String marca;
+    private String modelo;
+    private int ano;
+
+    public Veiculo(String chassi, String placa, String marca, String modelo, int ano) {
+        this.chassi = chassi;
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+    }
+
+    // Getters e setters
+    public String getChassi() {
+        return chassi;
+    }
+
+    public void setChassi(String chassi) {
+        this.chassi = chassi;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    // Método para atualizar os dados do veículo
+    public void atualizarVeiculo(String novaPlaca, String novaMarca, String novoModelo, int novoAno) {
+        this.placa = novaPlaca;
+        this.marca = novaMarca;
+        this.modelo = novoModelo;
+        this.ano = novoAno;
+    }
+
+    // Método para imprimir os dados do veículo
+    public void imprimirVeiculo() {
+        System.out.println("Chassi: " + chassi);
+        System.out.println("Placa: " + placa);
+        System.out.println("Marca: " + marca);
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Ano: " + ano);
+    }
+}
+
+
+
+
+import java.util.Scanner;
+
+public class CadastroVeiculos {
+    private static final int MAX_VEICULOS = 100;
+    private static Veiculo[] cadastroVeiculos = new Veiculo[MAX_VEICULOS];
+    private static int numVeiculosCadastrados = 0;
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int opcao;
+        do {
+            System.out.println("1. Cadastrar veículo");
+            System.out.println("2. Pesquisar veículo");
+            System.out.println("3. Atualizar veículo");
+            System.out.println("4. Excluir veículo");
+            System.out.println("5. Imprimir todos os veículos cadastrados");
+            System.out.println("6. Sair");
+            System.out.print("Escolha uma opção: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine(); // Consumir a quebra de linha
+
+            switch (opcao) {
+                case 1:
+                    cadastrarVeiculo();
+                    break;
+                case 2:
+                    pesquisarVeiculo();
+                    break;
+                case 3:
+                    atualizarVeiculo();
+                    break;
+                case 4:
+                    excluirVeiculo();
+                    break;
+                case 5:
+                    imprimirVeiculos();
+                    break;
+                case 6:
+                    System.out.println("Saindo...");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        } while (opcao != 6);
+    }
+
+    private static void cadastrarVeiculo() {
+        if (numVeiculosCadastrados < MAX_VEICULOS) {
+            System.out.print("Chassi: ");
+            String chassi = scanner.nextLine();
+            System.out.print("Placa: ");
+            String placa = scanner.nextLine();
+            System.out.print("Marca: ");
+            String marca = scanner.nextLine();
+            System.out.print("Modelo: ");
+            String modelo = scanner.nextLine();
+            System.out.print("Ano: ");
+            int ano = scanner.nextInt();
+            scanner.nextLine(); // Consumir a quebra de linha
+
+            Veiculo veiculo = new Veiculo(chassi, placa, marca, modelo, ano);
+            cadastroVeiculos[numVeiculosCadastrados++] = veiculo;
+            System.out.println("Veículo cadastrado com sucesso!");
+        } else {
+            System.out.println("Limite máximo de veículos cadastrados atingido.");
+        }
+    }
+
+    private static void pesquisarVeiculo() {
+        System.out.print("Digite o chassi ou a placa do veículo: ");
+        String termoPesquisa = scanner.nextLine();
+        boolean encontrado = false;
+       
