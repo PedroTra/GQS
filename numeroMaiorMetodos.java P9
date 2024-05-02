@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class MenorMaiorNumero {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double[] vetor = new double[10];
+
+        lerNumeros(scanner, vetor);
+
+        System.out.println("Vetor:");
+        imprimirVetor(vetor);
+
+        double menor = encontrarMenor(vetor);
+        double maior = encontrarMaior(vetor);
+        System.out.println("Menor número: " + menor);
+        System.out.println("Maior número: " + maior);
+
+        scanner.close();
+    }
+
+    public static void lerNumeros(Scanner scanner, double[] vetor) {
+        System.out.println("Digite 10 números reais:");
+        for (int i = 0; i < vetor.length; i++) {
+            vetor[i] = scanner.nextDouble();
+        }
+    }
+
+    public static void imprimirVetor(double[] vetor) {
+        for (int i = 0; i < vetor.length; i++) {
+            System.out.print(vetor[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static double encontrarMenor(double[] vetor) {
+        double menor = vetor[0];
+        for (int i = 1; i < vetor.length; i++) {
+            if (vetor[i] < menor) {
+                menor = vetor[i];
+            }
+        }
+        return menor;
+    }
+
+    public static double encontrarMaior(double[] vetor) {
+        double maior = vetor[0];
+        for (int i = 1; i < vetor.length; i++) {
+            if (vetor[i] > maior) {
+                maior = vetor[i];
+            }
+        }
+        return maior;
+    }
+}
