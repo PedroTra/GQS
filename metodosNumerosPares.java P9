@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class SomaPares {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] vetor = new int[10];
+
+        lerNumeros(scanner, vetor);
+
+        System.out.println("Vetor:");
+        imprimirVetor(vetor);
+
+        int somaPares = calcularSomaPares(vetor);
+        System.out.println("Soma dos números pares: " + somaPares);
+
+        scanner.close();
+    }
+
+    public static void lerNumeros(Scanner scanner, int[] vetor) {
+        System.out.println("Digite 10 números inteiros:");
+        for (int i = 0; i < vetor.length; i++) {
+            vetor[i] = scanner.nextInt();
+        }
+    }
+
+    public static void imprimirVetor(int[] vetor) {
+        for (int i = 0; i < vetor.length; i++) {
+            System.out.print(vetor[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static int calcularSomaPares(int[] vetor) {
+        int soma = 0;
+        for (int i = 0; i < vetor.length; i++) {
+            if (vetor[i] % 2 == 0) {
+                soma += vetor[i];
+            }
+        }
+        return soma;
+    }
+}
